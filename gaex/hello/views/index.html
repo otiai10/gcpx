@@ -7,7 +7,23 @@
 <body>
   <div class="container">
     <h1>Hello, GAE/Go!</h1>
-    このページは<a href="http://otiai10.hatenablog.com/entry/2016/03/23/214619">AppEngine GoでHello,Worldやってみたログ - DRYな備忘録</a>のサンプルです
+
+    <div class="row">
+      <form class="form col-sm-4" action="./hello" method="GET">
+        <div class="input-group">
+          <input type="text" name="name" class="form-control" placeholder="Can I have your name?">
+          <span class="input-group-btn">
+            <input type="submit" class="btn btn-default" value="Hello!">
+          </span>
+        </div>
+      </form>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        このページは<a href="http://otiai10.hatenablog.com/entry/2016/03/23/214619">AppEngine GoでHello,Worldやってみたログ - DRYな備忘録</a>のサンプルです
+      </div>
+    </div>
   </div>
 </body>
 </html>

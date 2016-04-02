@@ -14,11 +14,10 @@ func init() {
 	router.GET("/", func(w http.ResponseWriter, r *http.Request) {
 		marmoset.Render(w).HTML("index", nil)
 	})
-	router.GET("/foo", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("おっぱい"))
+	router.GET("/hello", func(w http.ResponseWriter, r *http.Request) {
+		marmoset.Render(w).HTML("hello", map[string]interface{}{
+			"name": r.FormValue("name"),
+		})
 	})
-	// router.GET("/", func(w http.ResponseWriter, r *http.Request) {
-	// 	w.Write([]byte("パイスラッシュ"))
-	// })
 	http.Handle("/", router)
 }
