@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <meta charset="utf-8">
+</head>
+<body>
+  <div class="container">
+
+    <div class="row"><div class="col-sm-12"><h1>GAE/Go with CloudSQL</h1></div></div>
+
+    {{if .error}}
+    <div class="row">
+      <div class="col-sm-12"><div class="alert alert-warning">{{.error}}</div></div>
+    </div>
+    {{end}}
+
+    {{if .success}}
+    <div class="row">
+      <div class="col-sm-12"><div class="alert alert-success">{{.success}}</div></div>
+    </div>
+    {{end}}
+
+    <div class="row">
+      <div class="col-sm-12">
+        <form class="form" action="/" method="POST">
+
+          <table class="table table-striped">
+            <thead><tr><th>ID</th><th>Name</th><th>Age</th><th></th></tr></thead>
+            <tbody>
+              {{range .users}}
+              <tr><td>{{.ID}}</td><td>{{.Name}}</td><td>{{.Age}}</td><td></td></tr>
+              {{end}}
+              <tr>
+                <td></td>
+                <td><input type="text"   name="name" class="form-control" placeholder="name"></td>
+                <td><input type="number" name="age" class="form-control" placeholder="age"></td>
+                <td><input type="submit" class="btn btn-primary" value="ADD"></td>
+              </tr>
+            </tbody>
+          </table>
+
+        </form>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
