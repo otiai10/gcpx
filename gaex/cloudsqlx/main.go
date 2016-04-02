@@ -1,10 +1,11 @@
 package cloudsqlx
 
 import (
-	"fmt"
 	"net/http"
 	"os"
 	"strconv"
+
+	"google.golang.org/appengine"
 
 	_ "github.com/go-sql-driver/mysql"
 
@@ -23,13 +24,13 @@ type User struct {
 
 func init() {
 
-	projectID := os.Getenv("PROJECT_ID")
-	instanceName := os.Getenv("INSTANCE_NAME")
-	databaseName := os.Getenv("DATABASE_NAME")
+	uri := os.Getenv("DATABASE_URI") // 最初はこれだけでいいと思ったんだけど
+	// Devサーバの中まで環境変数を渡せないので、なんらかの直接指定が必要
+	if appengine.IsDevAppServer() {
+		uri = "root@tcp(localhost:3306)/hoge"
+	}
 
-	db, err := gorm.Open("mysql", fmt.Sprintf(
-		"root@cloudsql(%s:%s)/%s", projectID, instanceName, databaseName,
-	))
+	db, err := gorm.Open("mysql", uri)
 	if err != nil {
 		panic(err)
 	}
